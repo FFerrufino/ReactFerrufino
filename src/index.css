@@ -1,0 +1,10 @@
+.headerStyle {
+  width: 100%;
+  background-color: gray;
+  margin: auto;
+  height: 10vh;
+}
+html body {
+  background-color: black;
+  color: white;
+}
