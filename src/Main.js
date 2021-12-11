@@ -1,8 +1,9 @@
-import Header from "./Header";
-import Main from "./Main";
-import { BrowserRouter } from "react-router-dom";
+import ItemDetailContainer from "./main/ItemDetailContainer";
+import ItemListContainer from "./main/ItemListContainer";
+import ItemCount from "./main/ItemCount";
+import { Routes, Route } from "react-router-dom";
 
-const App = () => {
+const Main = () => {
   let listaproductos = [
     {
       id: 1,
@@ -34,11 +35,15 @@ const App = () => {
     },
   ];
   return (
-    <BrowserRouter>
-      <Header />
-      <Main />
-    </BrowserRouter>
+    <>
+      <Routes>
+        <Route path="/" element={<ItemListContainer />} />
+        <Route path="/categoria/:id" element={<ItemListContainer />} />
+        <Route path="/item/:id" element={<ItemDetailContainer />} />
+      </Routes>
+      <ItemCount nro={1} />
+    </>
   );
 };
 
-export default App;
+export default Main;
