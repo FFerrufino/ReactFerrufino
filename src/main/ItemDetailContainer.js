@@ -6,6 +6,7 @@ const ItemDetailContainer = () => {
   const [producto, setProducto] = useState([]);
 
   const { id } = useParams();
+
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products/${id}`)
       .then((dataresp) => dataresp.json())

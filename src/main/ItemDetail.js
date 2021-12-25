@@ -1,16 +1,10 @@
 import ItemCount from "./ItemCount";
-import { useState } from "react";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { context } from "../CartContext";
 
 const ItemDetail = ({ data }) => {
   const resultado = useContext(context);
-  // console.log(resultado.agregarItem);
 
-  // const prodName = data.title;
-  // const prodId = data.id;
-  // const prodPrice = data.price;
-  // const prod = { prodName, prodId, prodPrice };
   const prod = data;
 
   const enviarProducto = () => {
@@ -22,9 +16,6 @@ const ItemDetail = ({ data }) => {
   const cantidadrequerida = (parametro) => {
     setCantidad(parametro);
   };
-  const saludo = () => {
-    console.log(cantidad);
-  };
   return (
     <div>
       <ul>
@@ -32,7 +23,7 @@ const ItemDetail = ({ data }) => {
         <li>Descripción: {data.description}</li>
         <li>El precio es: {data.price}</li>
         <li>
-          <img src={data.image} />
+          <img src={data.image} alt="" />
         </li>
       </ul>
       <ItemCount datas={50} func={cantidadrequerida} />

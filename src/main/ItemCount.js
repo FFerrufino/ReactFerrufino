@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 const ItemCount = ({ datas, func }) => {
   const [counter, setCounter] = useState(1);
-  // console.log(datas);
   let stock = datas;
 
   const handleAdd2 = () => {

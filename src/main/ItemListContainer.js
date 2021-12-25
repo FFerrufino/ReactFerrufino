@@ -7,7 +7,6 @@ const ItemListContainer = () => {
   const { id } = useParams();
   const data = fetch("https://fakestoreapi.com/products");
   const datacat = fetch(`https://fakestoreapi.com/products/category/${id}`);
-  // console.log(id);
 
   useEffect(() => {
     setTimeout(() => {
@@ -29,7 +28,6 @@ const ItemListContainer = () => {
     }, 1);
   }, [id]);
 
-  // console.log(productos);
   return <ItemList data={productos} />;
 };
 

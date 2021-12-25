@@ -8,7 +8,6 @@ const Header = () => {
   return (
     <header className="headerStyle">
       <h1>Título del e-commerce</h1>
-      <CartWidget />
       <NavLink to="/">
         <Home />
       </NavLink>
@@ -18,6 +17,7 @@ const Header = () => {
       <NavLink to="/categoria/women's clothing">
         <Women />
       </NavLink>
+      <CartWidget />
     </header>
   );
 };
