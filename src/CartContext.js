@@ -12,36 +12,38 @@ const CartContext = ({ children }) => {
   const agregarItem = (e, cantidad) => {
     if (
       carrito.some(function (el) {
-        return el.id === e.id;
+        return el.id === e[0].producto.id.stringValue;
       })
     ) {
       let copia = [...carrito];
       carrito.map((carrito2) => {
-        if (carrito2.id === e.id) {
-          copia = copia.filter((element) => element.id !== e.id);
+        if (carrito2.id === e[0].producto.id.stringValue) {
+          copia = copia.filter(
+            (element) => element.id !== e[0].producto.id.stringValue
+          );
           copia.push({
             ...carrito2,
             quantity: carrito2.quantity + cantidad,
-            price: e.price,
+            price: e[0].producto.precio.integerValue,
           });
         }
       });
 
       setCarrito(copia);
-      let cantidadAgregada = cantidad * e.price;
+      let cantidadAgregada = cantidad * e[0].producto.precio.integerValue;
       setPrecio(precio + cantidadAgregada);
     } else {
       const newProd = {
-        title: e.title,
-        id: e.id,
+        title: e[0].producto.titulo.stringValue,
+        id: e[0].producto.id.stringValue,
         quantity: cantidad,
-        price: e.price,
+        price: e[0].producto.precio.integerValue,
       };
       const copia = [...carrito];
       copia.push(newProd);
       setCarrito(copia);
 
-      let cantidadAgregada = cantidad * e.price;
+      let cantidadAgregada = cantidad * e[0].producto.precio.integerValue;
       setPrecio(precio + cantidadAgregada);
     }
   };

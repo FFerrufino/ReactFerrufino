@@ -1,29 +1,44 @@
 import ItemList from "./items/ItemList";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
+import { db } from "../Firebase";
+import { collection, getDocs, where, query } from "firebase/firestore";
 
 const ItemListContainer = () => {
   const [productos, setProductos] = useState([]);
   const { id } = useParams();
-  const data = fetch("https://fakestoreapi.com/products");
-  const datacat = fetch(`https://fakestoreapi.com/products/category/${id}`);
 
   useEffect(() => {
     setTimeout(() => {
       if (!id) {
-        data
-          .then((dataresp) => dataresp.json())
-          .then((json) => {
-            setProductos(json);
+        const productos2 = collection(db, "productos");
+
+        const promesa = getDocs(productos2);
+        let lista = [];
+        promesa
+          .then((resultado) => {
+            resultado.forEach((doc) => {
+              lista.push(doc.data());
+            });
+            setProductos(lista);
           })
-          .catch((err) => console.log(err));
+          .catch(() => {
+            console.log("error");
+          });
       } else {
-        datacat
-          .then((dataresp) => dataresp.json())
-          .then((json) => {
-            setProductos(json);
-          })
-          .catch((err) => console.log(err));
+        let lista = [];
+        const productos2 = collection(db, "productos");
+
+        const q = query(productos2, where("categoria", "==", id));
+        getDocs(q).then((snapshot) => {
+          if (snapshot.size === 0) {
+            console.log("no hay resultados");
+          }
+          snapshot.forEach((doc) => {
+            lista.push(doc.data());
+          });
+          setProductos(lista);
+        });
       }
     }, 1);
   }, [id]);

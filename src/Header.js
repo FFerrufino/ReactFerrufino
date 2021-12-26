@@ -11,10 +11,10 @@ const Header = () => {
       <NavLink to="/">
         <Home />
       </NavLink>
-      <NavLink to="/categoria/men's clothing">
+      <NavLink to="/categoria/2">
         <Men />
       </NavLink>
-      <NavLink to="/categoria/women's clothing">
+      <NavLink to="/categoria/1">
         <Women />
       </NavLink>
       <CartWidget />
